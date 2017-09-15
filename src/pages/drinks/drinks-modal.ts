@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class DrinksModalPage {
   @ViewChild('name') name;
-  beer: any = {};
+  drinks: any = {};
   error: any;
 
   constructor(public drinksService: DrinksService,
