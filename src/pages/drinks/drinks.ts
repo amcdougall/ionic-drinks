@@ -4,6 +4,7 @@ import { DrinksService } from '../../providers/drinks-service';
 import { DrinksModalPage } from '../drinks/drinks-modal';
 import {Camera} from 'ionic-native';
 import shortid from  'shortid';
+import {drinkModel} from '../../app/drinkModel';
 
 /**
  * Generated class for the DrinksPage page.
