@@ -27,9 +27,9 @@ export class DrinksService {
   save(drink: any): Observable<any> {
     let result: Observable<Response>;
     if (drink['href']) {
-      result = this.http.put(drink.href, beer);
+      result = this.http.put(drink.href, drink);
     } else {
-      result = this.http.post(this.DRINK_API, beer)
+      result = this.http.post(this.DRINK_API, drink)
     }
     return result.map((response: Response) => response.json())
       .catch(error => Observable.throw(error));

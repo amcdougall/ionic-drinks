@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, ModalController } from 'ionic-angular';
 import { DrinksService } from '../../providers/drinks-service';
-import { DrinksModalPage } from '../pages/drinks/drinks-modal';
+import { DrinksModalPage } from '../drinks/drinks-modal';
+import {Camera} from 'ionic-native';
+import shortid from  'shortid';
 
 /**
  * Generated class for the DrinksPage page.
@@ -21,18 +23,39 @@ export class DrinksPage {
               public drinksService: DrinksService, public modalCtrl: ModalController) {//
   }
 
-  /*ionViewDidLoad() {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad DrinksPage');
     this.drinksService.getDrinks().subscribe(drinks => {
       this.drinks = drinks;
     })
-  }*/
+  }
 
   openModal(drinkId) {
-    let modal = this.modalCtrl.create(DrinkModalPage, drinkId);
+    let modal = this.modalCtrl.create(DrinksModalPage, drinkId);
     modal.present();
     // refresh data after modal dismissed
     modal.onDidDismiss(() => this.ionViewDidLoad())
+  }
+
+  drinkPic(drinkIndex){
+
+    Camera.getPicture({
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000
+    }).then((imageData) => {
+      let picId = shortid.generate();
+      // imageData is a base64 encoded string
+      // this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.drinkModel[drinkIndex].currentImage = {
+        id: `DRINKJPEG-${this.drinkModel.siteId}-${picId}`,
+        contentType:"image/jpeg",
+        image:"data:image/jpeg;base64," + imageData,
+        fileName : `DRINKJPEG-${this.drinkModel.siteId}-${picId}.jpeg`
+      }
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }

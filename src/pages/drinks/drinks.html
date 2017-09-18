@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Good Beers</ion-title>
+    <ion-title>Drinks</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openModal()" color="primary">
         <ion-icon name="add-circle"></ion-icon>
@@ -22,4 +22,15 @@
       <h2>{{drink.name}}</h2>
     </ion-item>
   </ion-list>
+  <ion-row>
+    <ion-column>
+      <h6>Take a picture of your drink.</h6>
+      <button ion-button block outline (click)="drinkPic()">
+        <ion-icon name="camera" icon-left></ion-icon>&nbsp;&nbsp;
+        Take Photo
+      </button>
+      <h6>Picture:</h6>
+      <img [src]="drinkPictureBase64Image" *ngIf="drinkPictureBase64Image" />
+    </ion-column>
+  </ion-row>
 </ion-content>
