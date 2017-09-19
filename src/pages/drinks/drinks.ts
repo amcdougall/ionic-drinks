@@ -19,6 +19,7 @@ import {drinkModel} from '../../app/drinkModel';
 })
 export class DrinksPage {
   private drinks: Array<any>;
+  drinkModel: drinkModel;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public drinksService: DrinksService, public modalCtrl: ModalController) {//
@@ -49,10 +50,10 @@ export class DrinksPage {
       // imageData is a base64 encoded string
       // this.base64Image = "data:image/jpeg;base64," + imageData;
       this.drinkModel[drinkIndex].currentImage = {
-        id: `DRINKJPEG-${this.drinkModel.siteId}-${picId}`,
+        id: `DRINKJPEG-${this.drinkModel}-${picId}`,
         contentType:"image/jpeg",
         image:"data:image/jpeg;base64," + imageData,
-        fileName : `DRINKJPEG-${this.drinkModel.siteId}-${picId}.jpeg`
+        fileName : `DRINKJPEG-${this.drinkModel}-${picId}.jpeg`
       }
     }, (err) => {
       console.log(err);
